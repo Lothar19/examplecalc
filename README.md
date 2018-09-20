@@ -1,2 +1,0 @@
-# examplecalc
-example 1
