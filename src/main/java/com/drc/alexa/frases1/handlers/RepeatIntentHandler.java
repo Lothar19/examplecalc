@@ -22,7 +22,6 @@ public class RepeatIntentHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
-		String speechText = AlexaSpeechTexts.NOT_IMPLEMENTED_REPEAT;
-		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
+		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_REPEAT).withShouldEndSession(false).build();
 	}	
 }

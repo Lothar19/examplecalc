@@ -4,9 +4,9 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 
-public class Frases1StreamHandler extends SkillStreamHandler {
+public class SoulStreamHandler extends SkillStreamHandler {
 
-	public Frases1StreamHandler() {
+	public SoulStreamHandler() {
 		super(getSkill());
 	}
 

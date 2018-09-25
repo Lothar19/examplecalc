@@ -20,7 +20,6 @@ public class ResumeIntentHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
-
 		return input.getResponseBuilder().addAudioPlayerStopDirective().withShouldEndSession(false).build();
 	}
 }
