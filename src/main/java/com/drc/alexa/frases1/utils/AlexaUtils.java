@@ -13,8 +13,8 @@ import com.amazon.ask.model.interfaces.display.BodyTemplate1;
 import com.amazon.ask.model.interfaces.display.Image;
 import com.amazon.ask.model.interfaces.display.ImageInstance;
 import com.amazon.ask.model.interfaces.display.PlainText;
+import com.amazon.ask.model.interfaces.display.Template;
 import com.amazon.ask.model.interfaces.display.TextContent;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 
 public class AlexaUtils {
 
@@ -35,6 +35,23 @@ public class AlexaUtils {
 						TextContent.builder().withPrimaryText(PlainText.builder().withText("").build()).build())
 				.build();
 
+		return template;
+	}
+	
+	/**
+	 * Metodo que se encarga de recuperar la imagen en la plantilla de tipo 1
+	 * @return
+	 */
+	public static Template getBodyTemplateWithImage() {
+		// Crea el template con el logo de fondo
+		Image image = Image.builder().addSourcesItem(ImageInstance.builder().withUrl(AlexaConstants.LOGO).build()).build();
+		BodyTemplate1 template = BodyTemplate1.builder()
+				.withBackgroundImage(image)
+				.withBackButton(BackButtonBehavior.VISIBLE)
+				.withTextContent(TextContent.builder()
+				.withPrimaryText(PlainText.builder()
+				.withText("").build()).build())
+				.build();
 		return template;
 	}
 

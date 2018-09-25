@@ -11,18 +11,13 @@ import org.slf4j.LoggerFactory;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.DialogState;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
-import com.amazon.ask.model.interfaces.audioplayer.PlayBehavior;
-import com.amazon.ask.model.interfaces.audioplayer.PlaybackStoppedRequest;
 import com.amazon.ask.model.slu.entityresolution.StatusCode;
 import com.drc.alexa.frases1.model.CustomIntentEnum;
-import com.drc.alexa.frases1.model.Podcast;
-import com.drc.alexa.frases1.model.ProgramType;
 import com.drc.alexa.frases1.utils.AlexaConstants;
 import com.drc.alexa.frases1.utils.AlexaSpeechTexts;
 import com.drc.alexa.frases1.utils.AlexaUtils;
@@ -42,59 +37,32 @@ public class NombresMascotasIntentHandler implements RequestHandler {
 		Intent intent = intentRequest.getIntent();
 
 		Map<String, Slot> slots = intent.getSlots();
-		Slot playLastPodcast = slots.get(AlexaConstants.PLAY_LAST_PODCAST_SLOT);
 
-//		Podcast pausedPodcast = getLastPodcast();
-//
-//		if (pausedPodcast != null && (playLastPodcast.getValue() == null)) {
-//
-//			return input.getResponseBuilder()
-//					.withSpeech("La última vez no terminaste de escuchar " + pausedPodcast.getPodcastName()
-//							+ ". Quieres retomar el podcast?")
-//					.addElicitSlotDirective(AlexaConstants.PLAY_LAST_PODCAST_SLOT, intent).build();
-//		} else if (pausedPodcast != null && (playLastPodcast.getValue() != null)
-//				&& (((String) playLastPodcast.getValue()).equalsIgnoreCase("si"))) {
-//
-//			setWhatIsSoundingPodcast(input, pausedPodcast.getPodcastName(), pausedPodcast);
-//
-//			return input.getResponseBuilder().withSpeech("Reproduciendo el podcast " + pausedPodcast.getPodcastName())
-//					.addRenderTemplateDirective(AlexaUtils.getBodyTemplate1())
-//					.withShouldEndSession(false)
-//					.addAudioPlayerPlayDirective(PlayBehavior.REPLACE_ALL, pausedPodcast.getOffsetMilliseconds(), null,
-//							pausedPodcast.getPodcastUrl(), pausedPodcast.getPodcastUrl())
-//					.build();
-//
-//		} else if (pausedPodcast != null && (playLastPodcast.getValue() != null)
-//				&& (((String) playLastPodcast.getValue()).equalsIgnoreCase("no"))
-//				&& !intentRequest.getDialogState().equals(DialogState.COMPLETED)) {
-//
-//			return input.getResponseBuilder().addDelegateDirective(intent).build();
-//
-//		} else {
-//
-//			if (!intentRequest.getDialogState().equals(DialogState.COMPLETED)) {
-//				return input.getResponseBuilder().addDelegateDirective(intent).build();
-//			} else {
-				Slot nameSlot = slots.get(AlexaConstants.NAME_SLOT);
-				String realNameSlot = null;
-				if ((realNameSlot = getValidCustomSlot(nameSlot)) == null) {
-					logger.info("no se reconoce el podcast");
-					return input.getResponseBuilder()
-							.withSpeech("Perdona, no reconozco ese podcast. Di otro podcast como El Transistor o la Rosa de los vientos")
-							.addElicitSlotDirective(AlexaConstants.NAME_SLOT, intent).build();
-				}
-				
-				return input.getResponseBuilder()
-						.withSpeech("Reproduciendo el podcast " + realNameSlot)
-						.addRenderTemplateDirective(AlexaUtils.getBodyTemplate1())
-						.withShouldEndSession(false).build();
-			}
-//
-//		}
-
+		Slot nameSlot = slots.get(AlexaConstants.NAME_SLOT);
+		String realNameSlot = null;
+		if ((realNameSlot = getValidCustomSlot(nameSlot)) == null) {
+			logger.info("no se reconoce el tipo de animal");
+			return input.getResponseBuilder()
+					.withSpeech("Perdona, no reconozco ese animal. Di otro animal como 'Perro', 'Gato' o Pájaro'")
+					.addElicitSlotDirective(AlexaConstants.NAME_SLOT, intent).build();
+		} 
+		
+		String speechText = "";
+		for (int i = 0; i<5; i++) {
+			speechText += (AlexaSpeechTexts.MASCOTAS[new Random().nextInt(AlexaSpeechTexts.MASCOTAS.length)]) + ", ";
+		}
+		
+		return input.getResponseBuilder()
+				.withSpeech(speechText)
+				.addRenderTemplateDirective(AlexaUtils.getBodyTemplateWithImage())
+				.withShouldEndSession(false).build();
 	}
 
-
+	/**
+	 * 
+	 * @param slot
+	 * @return
+	 */
 	private String getValidCustomSlot(Slot slot) {
 		String podcastRealName = null;
 		if( (slot.getValue() != null) && (slot.getResolutions() != null)
