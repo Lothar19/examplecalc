@@ -27,19 +27,9 @@ public class LaunchRequestHandler implements RequestHandler {
 		return input.matches(requestType(LaunchRequest.class));
 	}
 
-	public Optional<Response> handle(HandlerInput input) {
-		// Crea el template con el logo de fondo
-		Image image = Image.builder().addSourcesItem(ImageInstance.builder().withUrl(AlexaConstants.LOGO).build()).build();
-		BodyTemplate1 template = BodyTemplate1.builder().withBackgroundImage(image).withBackButton(BackButtonBehavior.VISIBLE).build();
-		
+	public Optional<Response> handle(HandlerInput input) {		
 		// Mensaje de bienvenida
-		String speechText = (AlexaSpeechTexts.WELCOME[new Random().nextInt(AlexaSpeechTexts.WELCOME.length)]);
-		
-		// Comprueba si el dispositivo tiene pantalla para mostrar la imagen o no.
-//		if (null != input.getRequestEnvelope().getContext().getDisplay()) {
-//			return input.getResponseBuilder().withSpeech(speechText + " Con Display").addRenderTemplateDirective(template).withShouldEndSession(false).build();	
-//		} else {
-			return input.getResponseBuilder().withSpeech(speechText + " Sin Display").withShouldEndSession(false).build();	
-//		}		
+		String speechText = (AlexaSpeechTexts.WELCOME_MASCOTAS[new Random().nextInt(AlexaSpeechTexts.WELCOME_MASCOTAS.length)]);
+		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
 	}
 }

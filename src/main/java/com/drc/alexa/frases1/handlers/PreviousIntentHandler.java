@@ -22,6 +22,6 @@ public class PreviousIntentHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
-		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_PREVIOUS).withShouldEndSession(false).build();
+		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_PREVIOUS).withShouldEndSession(true).build();
 	}
 }

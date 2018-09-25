@@ -22,12 +22,7 @@ public class ResumeIntentHandler implements RequestHandler {
 
 	public Optional<Response> handle(HandlerInput input) {
 
-		logger.info("Reanudando directo");
 		String liveUrl = "https://icecast-streaming.nice264.com/ondacero";
-		return input.getResponseBuilder()
-				.addAudioPlayerPlayDirective(PlayBehavior.REPLACE_ALL, 0L, null, liveUrl, liveUrl)
-				.withShouldEndSession(false).build();
-
+		return input.getResponseBuilder().addAudioPlayerPlayDirective(PlayBehavior.REPLACE_ALL, 0L, null, liveUrl, liveUrl).withShouldEndSession(true).build();
 	}
-
 }

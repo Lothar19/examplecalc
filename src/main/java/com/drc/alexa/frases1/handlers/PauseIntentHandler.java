@@ -16,6 +16,6 @@ public class PauseIntentHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {	
-		return input.getResponseBuilder().addAudioPlayerStopDirective().withShouldEndSession(false).build();
+		return input.getResponseBuilder().addAudioPlayerStopDirective().withShouldEndSession(true).build();
 	}
 }

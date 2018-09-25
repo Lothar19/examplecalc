@@ -22,6 +22,6 @@ public class NextIntentHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
-		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_NEXT).withShouldEndSession(false).build();
+		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_NEXT).withShouldEndSession(true).build();
 	}	
 }

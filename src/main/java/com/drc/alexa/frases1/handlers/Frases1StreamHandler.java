@@ -19,7 +19,7 @@ public class Frases1StreamHandler extends SkillStreamHandler {
 			new SessionEndedRequestHandler(), 
 			new ExceptionOcurredRequestHandler(),
 			new LaunchRequestHandler(), 
-			new PodcastIntentHandler(), 
+			new NombresMascotasIntentHandler(), 
 			new ExitSkillHandler(), 
 			new HelpIntentHandler(),
 			new LoopIntentHandler(), 

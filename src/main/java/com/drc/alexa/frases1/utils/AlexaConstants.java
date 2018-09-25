@@ -6,7 +6,7 @@ public class AlexaConstants {
 	
 	public static final String PODCAST_NAME_SLOT = "podcastName";
 	public static final String PLAY_LAST_PODCAST_SLOT = "playLastPodcast";
-	public static final String LOGO = "https://static.ondacero.es/img/logo-ondacero-alexa-500.png";
+	public static final String LOGO = "";
 	public static final String ZONE = "Europe/Madrid";
 	public static final Regions REGION = Regions.EU_WEST_1;
 	

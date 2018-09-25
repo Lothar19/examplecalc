@@ -18,6 +18,6 @@ public class LoopIntentHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
-		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_LOOP).withShouldEndSession(false).build();
+		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_LOOP).withShouldEndSession(true).build();
 	}
 }

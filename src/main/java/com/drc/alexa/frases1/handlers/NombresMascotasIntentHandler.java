@@ -27,12 +27,12 @@ import com.drc.alexa.frases1.utils.AlexaConstants;
 import com.drc.alexa.frases1.utils.AlexaSpeechTexts;
 import com.drc.alexa.frases1.utils.AlexaUtils;
 
-public class PodcastIntentHandler implements RequestHandler {
+public class NombresMascotasIntentHandler implements RequestHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(PodcastIntentHandler.class);
+	private static final Logger logger = LoggerFactory.getLogger(NombresMascotasIntentHandler.class);
 
 	public boolean canHandle(HandlerInput input) {
-		return input.matches(intentName(CustomIntentEnum.PODCAST.getIntentName()));
+		return input.matches(intentName(CustomIntentEnum.NOMBRES_MASCOTAS.getIntentName()));
 	}
 
 	public Optional<Response> handle(HandlerInput input) {

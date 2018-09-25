@@ -18,6 +18,6 @@ public class ShuffleIntentHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
-		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_SHUFFLE).withShouldEndSession(false).build();
+		return input.getResponseBuilder().withSpeech(AlexaSpeechTexts.NOT_IMPLEMENTED_SHUFFLE).withShouldEndSession(true).build();
 	}
 }
