@@ -37,25 +37,23 @@ public class NombresMascotasIntentHandler implements RequestHandler {
 		Intent intent = intentRequest.getIntent();
 
 		Map<String, Slot> slots = intent.getSlots();
-
+		logger.info("MainHandler 1");
 		Slot nameSlot = slots.get(AlexaConstants.NAME_SLOT);
 		String realNameSlot = null;
 		if ((realNameSlot = getValidCustomSlot(nameSlot)) == null) {
+			logger.info("MainHandler 3 - nameSlot KO");
 			logger.info("no se reconoce el tipo de animal");
 			return input.getResponseBuilder()
 					.withSpeech("Perdona, no reconozco ese animal. Di otro animal como 'Perro', 'Gato' o Pájaro'")
 					.addElicitSlotDirective(AlexaConstants.NAME_SLOT, intent).build();
 		} 
-		
+		logger.info("MainHandler 4");
 		String speechText = "";
 		for (int i = 0; i<5; i++) {
 			speechText += (AlexaSpeechTexts.MASCOTAS[new Random().nextInt(AlexaSpeechTexts.MASCOTAS.length)]) + ", ";
 		}
-		
-		return input.getResponseBuilder()
-				.withSpeech(speechText)
-				.addRenderTemplateDirective(AlexaUtils.getBodyTemplateWithImage())
-				.withShouldEndSession(false).build();
+		logger.info("MainHandler 5 - speechText: " + speechText);
+		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
 	}
 
 	/**
