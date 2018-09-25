@@ -79,26 +79,8 @@ public class AlexaSpeechTexts {
 	
 	// STOP
 	public static final String[] STOP_DEFAULT_EMPTY = {
-			//"Si te ha gustado nuestra skill danos cinco estrellas.", 
+			"Si te ha gustado nuestra skill danos cinco estrellas.", 
 			"Gracias por escucharnos." };
-
-	// PODCAST
-//	public final static String[] PODCAST_NOT_IMPLEMENTED = { "En breve podrá disfrutar de los podcast en nuestra skill",
-//			"La opción de reproducir podcast estará disponible en próximas versiones." };
-//
-//	public static final String[] PLAYING_LIVE_WITH_FORMAT = {"Actualmente estamos emitiendo el programa %s", "Esta sonando nuestro programa %s", "Nuestro programa actual es %"};
-//	public static final String UNKNOWN_LIVE_PLAYING = "No se ha podido determinar que programa está sonando";
-
-//	public static final String[] LIVE_CHOOSE_EVENT = {
-//			"Ahora mismo puedes escuchar nuestro directo o el evento %s, ¿qué te apetece escuchar?",
-//			"Además de nuestra programación habitual, ahora podemos ofrecerte el evento %s, ¿quieres escuchar el evento, o el directo?",
-//			"¿Prefieres escuchar nuestro directo, o el evento %s ?" 
-//	};
-	
-//	public static final String[] LIVE_CHOOSE_EVENT_REPROMT = {
-//			"¿Quieres escuchar nuestro directo, o el evento %s?",
-//			"Ahora puedes escuchar nuestra programación habitual, o el evento %s, ¿Qué prefieres?" 
-//	};
 
 	public static final String[] LIVE_CHOOSE_EVENT_DIDNT_UNDERSTAND = {
 			"Perdona, no te he entendido",
@@ -107,8 +89,6 @@ public class AlexaSpeechTexts {
 			"Perdona, ¿puedes repetirlo?", 
 			"Perdona, ¿Que has dicho?"
 	};
-	
-//	public static final String LIVE_CHOOSE_HELP = " .Puedes decir \"directo\" para escuchar nuestro programa en directo, o \"evento\" para escuchar nuestro evento ";
 
 	// HELP
 	// reproduce el directo, escuchar directo, directo
