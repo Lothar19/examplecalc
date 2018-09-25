@@ -16,11 +16,9 @@ public class AuthInterceptor implements ClientHttpRequestInterceptor {
 		this.authorization = authorization;
 	}
 
-	public ClientHttpResponse intercept(HttpRequest request, byte[] body,
-			ClientHttpRequestExecution execution) throws IOException {
+	public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
 		HttpRequestWrapper requestWrapper = new HttpRequestWrapper(request);
 		requestWrapper.getHeaders().set("Authorization", "Basic " + authorization);
 		return execution.execute(requestWrapper, body);
 	}
-
 }

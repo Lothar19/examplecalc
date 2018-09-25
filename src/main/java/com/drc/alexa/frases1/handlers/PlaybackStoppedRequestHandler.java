@@ -29,5 +29,4 @@ public class PlaybackStoppedRequestHandler implements RequestHandler {
 		logger.info("Token: " + ((PlaybackStoppedRequest)input.getRequestEnvelope().getRequest()).getToken());
 		return null;
 	}
-
 }

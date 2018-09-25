@@ -44,90 +44,56 @@ public class NombresMascotasIntentHandler implements RequestHandler {
 		Map<String, Slot> slots = intent.getSlots();
 		Slot playLastPodcast = slots.get(AlexaConstants.PLAY_LAST_PODCAST_SLOT);
 
-		Podcast pausedPodcast = getLastPodcast();
-
-		if (pausedPodcast != null && (playLastPodcast.getValue() == null)) {
-
-			return input.getResponseBuilder()
-					.withSpeech("La última vez no terminaste de escuchar " + pausedPodcast.getPodcastName()
-							+ ". Quieres retomar el podcast?")
-					.addElicitSlotDirective(AlexaConstants.PLAY_LAST_PODCAST_SLOT, intent).build();
-		} else if (pausedPodcast != null && (playLastPodcast.getValue() != null)
-				&& (((String) playLastPodcast.getValue()).equalsIgnoreCase("si"))) {
-
-			setWhatIsSoundingPodcast(input, pausedPodcast.getPodcastName(), pausedPodcast);
-
-			return input.getResponseBuilder().withSpeech("Reproduciendo el podcast " + pausedPodcast.getPodcastName())
-					.addRenderTemplateDirective(AlexaUtils.getBodyTemplate1())
-					.withShouldEndSession(false)
-					.addAudioPlayerPlayDirective(PlayBehavior.REPLACE_ALL, pausedPodcast.getOffsetMilliseconds(), null,
-							pausedPodcast.getPodcastUrl(), pausedPodcast.getPodcastUrl())
-					.build();
-
-		} else if (pausedPodcast != null && (playLastPodcast.getValue() != null)
-				&& (((String) playLastPodcast.getValue()).equalsIgnoreCase("no"))
-				&& !intentRequest.getDialogState().equals(DialogState.COMPLETED)) {
-
-			return input.getResponseBuilder().addDelegateDirective(intent).build();
-
-		} else {
-
-			if (!intentRequest.getDialogState().equals(DialogState.COMPLETED)) {
-				return input.getResponseBuilder().addDelegateDirective(intent).build();
-			} else {
-				Slot podcastNameSlot = slots.get(AlexaConstants.PODCAST_NAME_SLOT);
-				String realPodcastName = null;
-				if ((realPodcastName = getValidCustomSlot(podcastNameSlot)) == null) {
+//		Podcast pausedPodcast = getLastPodcast();
+//
+//		if (pausedPodcast != null && (playLastPodcast.getValue() == null)) {
+//
+//			return input.getResponseBuilder()
+//					.withSpeech("La última vez no terminaste de escuchar " + pausedPodcast.getPodcastName()
+//							+ ". Quieres retomar el podcast?")
+//					.addElicitSlotDirective(AlexaConstants.PLAY_LAST_PODCAST_SLOT, intent).build();
+//		} else if (pausedPodcast != null && (playLastPodcast.getValue() != null)
+//				&& (((String) playLastPodcast.getValue()).equalsIgnoreCase("si"))) {
+//
+//			setWhatIsSoundingPodcast(input, pausedPodcast.getPodcastName(), pausedPodcast);
+//
+//			return input.getResponseBuilder().withSpeech("Reproduciendo el podcast " + pausedPodcast.getPodcastName())
+//					.addRenderTemplateDirective(AlexaUtils.getBodyTemplate1())
+//					.withShouldEndSession(false)
+//					.addAudioPlayerPlayDirective(PlayBehavior.REPLACE_ALL, pausedPodcast.getOffsetMilliseconds(), null,
+//							pausedPodcast.getPodcastUrl(), pausedPodcast.getPodcastUrl())
+//					.build();
+//
+//		} else if (pausedPodcast != null && (playLastPodcast.getValue() != null)
+//				&& (((String) playLastPodcast.getValue()).equalsIgnoreCase("no"))
+//				&& !intentRequest.getDialogState().equals(DialogState.COMPLETED)) {
+//
+//			return input.getResponseBuilder().addDelegateDirective(intent).build();
+//
+//		} else {
+//
+//			if (!intentRequest.getDialogState().equals(DialogState.COMPLETED)) {
+//				return input.getResponseBuilder().addDelegateDirective(intent).build();
+//			} else {
+				Slot nameSlot = slots.get(AlexaConstants.NAME_SLOT);
+				String realNameSlot = null;
+				if ((realNameSlot = getValidCustomSlot(nameSlot)) == null) {
 					logger.info("no se reconoce el podcast");
-					return input.getResponseBuilder().withSpeech(
-							"Perdona, no reconozco ese podcast. Di otro podcast como El Transistor o la Rosa de los vientos")
-							.addElicitSlotDirective(AlexaConstants.PODCAST_NAME_SLOT, intent).build();
+					return input.getResponseBuilder()
+							.withSpeech("Perdona, no reconozco ese podcast. Di otro podcast como El Transistor o la Rosa de los vientos")
+							.addElicitSlotDirective(AlexaConstants.NAME_SLOT, intent).build();
 				}
-
-				String url = AlexaUtils.getUrlPodcast(realPodcastName);
-
-				Podcast podcast = mapPodcast(url, realPodcastName);
-				setWhatIsSoundingPodcast(input, realPodcastName, podcast);
 				
-				return input.getResponseBuilder().withSpeech("Reproduciendo el podcast " + realPodcastName)
+				return input.getResponseBuilder()
+						.withSpeech("Reproduciendo el podcast " + realNameSlot)
 						.addRenderTemplateDirective(AlexaUtils.getBodyTemplate1())
-						.withShouldEndSession(false)
-						.addAudioPlayerPlayDirective(PlayBehavior.REPLACE_ALL, 0L, null, url, url).build();
+						.withShouldEndSession(false).build();
 			}
-
-		}
+//
+//		}
 
 	}
 
-	private void setWhatIsSoundingPodcast(HandlerInput input, String podcastName, Podcast podcast) {
-		Map<String, Object> sessionAttributes = input.getAttributesManager().getSessionAttributes();
-		sessionAttributes.put("currentProgramType", ProgramType.PODCAST);
-		sessionAttributes.put("currentPodcast", podcast);
-		// Borramos el directo en caso de que estuviera reproduciendo uno
-		sessionAttributes.remove("currentProgram");
-	}
-	
-	private Podcast mapPodcast(String podcastUrl, String podcastName) {
-		PlaybackStoppedRequest req = PlaybackStoppedRequest.builder().build();
-		Podcast podcast = new Podcast();
-		podcast.setOffsetMilliseconds(0L);
-		podcast.setPodcastName(podcastName);
-		podcast.setPodcastUrl(podcastUrl);
-		//podcast.setUserId(userId);
-		
-		return podcast;
-	}
-
-	private Podcast getLastPodcast() {
-
-		Podcast podcast = new Podcast();
-		podcast.setOffsetMilliseconds(2000L);
-		podcast.setPodcastName("La Rosa de Los Vientos");
-		podcast.setPodcastUrl(
-				"https://dpvclip.antena3.com/mp_audios5//2018/08/22/4E92CD50-1377-416A-A83D-18EB1A2A7ACB/4E92CD50-1377-416A-A83D-18EB1A2A7ACB.mp4");
-
-		return podcast;
-	}
 
 	private String getValidCustomSlot(Slot slot) {
 		String podcastRealName = null;

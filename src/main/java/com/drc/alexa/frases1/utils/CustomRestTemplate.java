@@ -14,5 +14,4 @@ public class CustomRestTemplate extends RestTemplate {
 		interceptors.add(new AuthInterceptor(auth));
 		this.setInterceptors(interceptors);
 	}
-
 }
