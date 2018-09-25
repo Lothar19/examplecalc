@@ -12,11 +12,6 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.interfaces.display.BackButtonBehavior;
-import com.amazon.ask.model.interfaces.display.BodyTemplate1;
-import com.amazon.ask.model.interfaces.display.Image;
-import com.amazon.ask.model.interfaces.display.ImageInstance;
-import com.drc.alexa.frases1.utils.AlexaConstants;
 import com.drc.alexa.frases1.utils.AlexaSpeechTexts;
 
 public class LaunchRequestHandler implements RequestHandler {
@@ -28,19 +23,20 @@ public class LaunchRequestHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
-		// Crea el template con el logo de fondo
-		Image image = Image.builder().addSourcesItem(ImageInstance.builder().withUrl(AlexaConstants.LOGO).build()).build();
-		BodyTemplate1 template = BodyTemplate1.builder().withBackgroundImage(image).withBackButton(BackButtonBehavior.VISIBLE).build();
-		
-		// Mensaje de bienvenida
+		logger.info("Ha entrado en el launch");
+//		// Crea el template con el logo de fondo
+//		Image image = Image.builder().addSourcesItem(ImageInstance.builder().withUrl(AlexaConstants.LOGO).build()).build();
+//		BodyTemplate1 template = BodyTemplate1.builder().withBackgroundImage(image).withBackButton(BackButtonBehavior.VISIBLE).build();
+//		
+//		// Mensaje de bienvenida
 		String speechText = (AlexaSpeechTexts.WELCOME_MASCOTAS[new Random().nextInt(AlexaSpeechTexts.WELCOME_MASCOTAS.length)]);
-		
-		// Comprueba si el dispositivo tiene pantalla para mostrar la imagen o no.
-		if (null != input.getRequestEnvelope().getContext().getDisplay()) {
-			return input.getResponseBuilder().withSpeech(speechText).addRenderTemplateDirective(template).withShouldEndSession(false).build();	
-		} else {
-			return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();	
-		}		
-		
+		logger.info("Launch 2 - speech: " + speechText);
+//		// Comprueba si el dispositivo tiene pantalla para mostrar la imagen o no.
+//		if (null != input.getRequestEnvelope().getContext().getDisplay()) {
+//			return input.getResponseBuilder().withSpeech(speechText).addRenderTemplateDirective(template).withShouldEndSession(false).build();	
+//		} else {
+//			return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();	
+//		}		
+		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
 	}
 }
