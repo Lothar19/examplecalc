@@ -37,6 +37,6 @@ public class LaunchRequestHandler implements RequestHandler {
 //		} else {
 //			return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();	
 //		}		
-		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
+		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
 	}
 }

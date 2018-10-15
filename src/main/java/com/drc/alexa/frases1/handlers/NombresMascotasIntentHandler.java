@@ -2,6 +2,9 @@ package com.drc.alexa.frases1.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
@@ -20,7 +23,6 @@ import com.amazon.ask.model.slu.entityresolution.StatusCode;
 import com.drc.alexa.frases1.model.CustomIntentEnum;
 import com.drc.alexa.frases1.utils.AlexaConstants;
 import com.drc.alexa.frases1.utils.AlexaSpeechTexts;
-import com.drc.alexa.frases1.utils.AlexaUtils;
 
 public class NombresMascotasIntentHandler implements RequestHandler {
 
@@ -31,7 +33,8 @@ public class NombresMascotasIntentHandler implements RequestHandler {
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
-		logger.info("Ha entrado en el hanlder principal");
+		logger.info("********** " + new Date());
+		logger.info("Ha entrado en el handler principal");
 		Request request = input.getRequestEnvelope().getRequest();
 		IntentRequest intentRequest = (IntentRequest) request;
 		Intent intent = intentRequest.getIntent();
@@ -39,6 +42,8 @@ public class NombresMascotasIntentHandler implements RequestHandler {
 		Map<String, Slot> slots = intent.getSlots();
 		logger.info("MainHandler 1");
 		Slot nameSlot = slots.get(AlexaConstants.NAME_SLOT);
+		ZonedDateTime requestDateTime = request.getTimestamp().atZoneSameInstant(ZoneId.of("Europe/Madrid"));
+		
 		String realNameSlot = null;
 		if ((realNameSlot = getValidCustomSlot(nameSlot)) == null) {
 			logger.info("MainHandler 3 - nameSlot KO");
@@ -53,7 +58,7 @@ public class NombresMascotasIntentHandler implements RequestHandler {
 			speechText += (AlexaSpeechTexts.MASCOTAS[new Random().nextInt(AlexaSpeechTexts.MASCOTAS.length)]) + ", ";
 		}
 		logger.info("MainHandler 5 - speechText: " + speechText);
-		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
+		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
 	}
 
 	/**
