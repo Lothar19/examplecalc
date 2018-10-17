@@ -29,6 +29,7 @@ public class NombresMascotasIntentHandler implements RequestHandler {
 	private static final Logger logger = LoggerFactory.getLogger(NombresMascotasIntentHandler.class);
 
 	public boolean canHandle(HandlerInput input) {
+		logger.info("********** NombresMascotasIntentHandler: " + new Date() + input);
 		return input.matches(intentName(CustomIntentEnum.NOMBRES_MASCOTAS.getIntentName()));
 	}
 
