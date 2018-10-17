@@ -19,7 +19,7 @@ public class SoulStreamHandler extends SkillStreamHandler {
 			new SessionEndedRequestHandler(), 
 			new ExceptionOcurredRequestHandler(),
 			new LaunchRequestHandler(), 
-			new NombresMascotasIntentHandler(), 
+			new BebeViajeroIntentHandler(), 
 			new ExitSkillHandler(), 
 			new HelpIntentHandler(),
 			new LoopIntentHandler(), 

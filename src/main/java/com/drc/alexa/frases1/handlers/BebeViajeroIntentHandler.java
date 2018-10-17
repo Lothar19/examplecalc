@@ -24,9 +24,9 @@ import com.drc.alexa.frases1.model.CustomIntentEnum;
 import com.drc.alexa.frases1.utils.AlexaConstants;
 import com.drc.alexa.frases1.utils.AlexaSpeechTexts;
 
-public class NombresMascotasIntentHandler implements RequestHandler {
+public class BebeViajeroIntentHandler implements RequestHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(NombresMascotasIntentHandler.class);
+	private static final Logger logger = LoggerFactory.getLogger(BebeViajeroIntentHandler.class);
 
 	public boolean canHandle(HandlerInput input) {
 		return input.matches(intentName(CustomIntentEnum.NOMBRES_MASCOTAS.getIntentName()));
