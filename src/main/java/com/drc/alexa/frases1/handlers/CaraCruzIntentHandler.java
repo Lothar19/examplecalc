@@ -43,7 +43,6 @@ public class CaraCruzIntentHandler implements RequestHandler {
 
 		Map<String, Slot> slots = intent.getSlots();		
 		Slot nameSlot = slots.get(AlexaConstants.SLOT_OPTIONALS);
-		logger.info("nameSlot: " + nameSlot);
 		ZonedDateTime requestDateTime = request.getTimestamp().atZoneSameInstant(ZoneId.of("Europe/Madrid"));
 		
 		String realNameSlot = null;
@@ -59,9 +58,9 @@ public class CaraCruzIntentHandler implements RequestHandler {
 		String Opt = AlexaSpeechTexts.OPT_CARACRUZ[new Random().nextInt(AlexaSpeechTexts.OPT_CARACRUZ.length)];
 		String speechText = "Has seleccionado " + realNameSlot + AlexaSpeechTexts.CARACRUZ[new Random().nextInt(AlexaSpeechTexts.CARACRUZ.length)] + Opt + ".";
 		if (realNameSlot.equalsIgnoreCase(Opt))
-			speechText += "<prosody volume=\"loud\"> Tu Ganas </prosody>";
+			speechText += "<emphasis level=\"strong\"> Tu Ganas </emphasis>";
 		else
-			speechText += "<prosody volume=\"loud\"> Tu Pierdes </prosody>";
+			speechText += "<emphasis level=\"strong\">Tu Pierdes </emphasis>";
 
 		logger.info("*******************************");
 		logger.info("MainHandler 5 - speechText: " + speechText);
