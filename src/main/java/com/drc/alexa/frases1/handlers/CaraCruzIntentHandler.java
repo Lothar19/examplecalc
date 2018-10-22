@@ -29,8 +29,9 @@ public class CaraCruzIntentHandler implements RequestHandler {
 	private static final Logger logger = LoggerFactory.getLogger(CaraCruzIntentHandler.class);
 
 	public boolean canHandle(HandlerInput input) {
-		logger.info("********** " + AlexaConstants.SITENAME_CARA_CRUZ + ": " + new Date() + input);
-		return input.matches(intentName(CustomIntentEnum.CARA_CRUZ .getIntentName()));
+//		logger.info("********** " + AlexaConstants.SITENAME_CARA_CRUZ + ": " + new Date() + input);
+		logger.info("********** " + ": " + CustomIntentEnum.CARACRUZ.getIntentName() + input);
+		return input.matches(intentName(CustomIntentEnum.CARACRUZ.getIntentName()));
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
@@ -40,9 +41,8 @@ public class CaraCruzIntentHandler implements RequestHandler {
 		IntentRequest intentRequest = (IntentRequest) request;
 		Intent intent = intentRequest.getIntent();
 
-		Map<String, Slot> slots = intent.getSlots();
-		logger.info("MainHandler 1");
-		Slot nameSlot = slots.get(AlexaConstants.SLOT_CARACRUZ_TYPE);
+		Map<String, Slot> slots = intent.getSlots();		
+		Slot nameSlot = slots.get(AlexaConstants.SLOT_OPTIONALS);
 		logger.info("nameSlot: " + nameSlot);
 		ZonedDateTime requestDateTime = request.getTimestamp().atZoneSameInstant(ZoneId.of("Europe/Madrid"));
 		
@@ -55,16 +55,18 @@ public class CaraCruzIntentHandler implements RequestHandler {
 					.addElicitSlotDirective(AlexaConstants.SLOT_CARACRUZ_TYPE, intent).build();
 		} 
 		logger.info("MainHandler 4");
-		String speechText = "";
-		for (int i = 0; i<5; i++) {
-			speechText += "Has seleccionado " + nameSlot + (AlexaSpeechTexts.CARACRUZ[new Random().nextInt(AlexaSpeechTexts.CARACRUZ.length)]);
-			if (speechText.contains(realNameSlot))
-				speechText += "Tu Ganas";
-			else
-				speechText += "Tu Pierdes";
-		}
+			
+		String Opt = AlexaSpeechTexts.OPT_CARACRUZ[new Random().nextInt(AlexaSpeechTexts.OPT_CARACRUZ.length)];
+		String speechText = "Has seleccionado " + realNameSlot + AlexaSpeechTexts.CARACRUZ[new Random().nextInt(AlexaSpeechTexts.CARACRUZ.length)] + Opt + ".";
+		if (realNameSlot.equalsIgnoreCase(Opt))
+			speechText += "<prosody volume=\"loud\"> Tu Ganas </prosody>";
+		else
+			speechText += "<prosody volume=\"loud\"> Tu Pierdes </prosody>";
+
+		logger.info("*******************************");
 		logger.info("MainHandler 5 - speechText: " + speechText);
-		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
+		logger.info("*******************************");
+		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
 	}
 
 	/**
