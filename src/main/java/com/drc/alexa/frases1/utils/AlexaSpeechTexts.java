@@ -82,7 +82,8 @@ public class AlexaSpeechTexts {
 	};
 
 	public static final String[] CARACRUZ = {
-		  			
+		". Y lanzamos la moneda y sale .............. Cruz.",
+		". Y lanzamos la moneda y sale .............. Cara."
 	};
 		
 	public static final String[] PARESNONES = {

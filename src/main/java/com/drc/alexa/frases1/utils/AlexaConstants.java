@@ -4,7 +4,9 @@ import com.amazonaws.regions.Regions;
 
 public class AlexaConstants {
 	
-	public static final String NAME_SLOT = "animalType";
+	public static final String SLOT_ANIMAL = "animalType";
+	public static final String SLOT_ELIJE_TYPE = "ElijeType";
+	public static final String SLOT_CARACRUZ_TYPE = "CaraCruzType";
 	
 	public static final String LOGO = "";
 	public static final String ZONE = "Europe/Madrid";

@@ -29,7 +29,7 @@ public class CaraCruzIntentHandler implements RequestHandler {
 	private static final Logger logger = LoggerFactory.getLogger(CaraCruzIntentHandler.class);
 
 	public boolean canHandle(HandlerInput input) {
-		logger.info("********** NombresMascotasIntentHandler: " + new Date() + input);
+		logger.info("********** " + AlexaConstants.SITENAME_CARA_CRUZ + ": " + new Date() + input);
 		return input.matches(intentName(CustomIntentEnum.CARA_CRUZ .getIntentName()));
 	}
 
@@ -42,21 +42,26 @@ public class CaraCruzIntentHandler implements RequestHandler {
 
 		Map<String, Slot> slots = intent.getSlots();
 		logger.info("MainHandler 1");
-		Slot nameSlot = slots.get(AlexaConstants.NAME_SLOT);
+		Slot nameSlot = slots.get(AlexaConstants.SLOT_CARACRUZ_TYPE);
+		logger.info("nameSlot: " + nameSlot);
 		ZonedDateTime requestDateTime = request.getTimestamp().atZoneSameInstant(ZoneId.of("Europe/Madrid"));
 		
 		String realNameSlot = null;
 		if ((realNameSlot = getValidCustomSlot(nameSlot)) == null) {
-			logger.info("MainHandler 3 - nameSlot KO");
-			logger.info("no se reconoce el tipo de animal");
+			logger.info("no se reconoce el slot");
 			return input.getResponseBuilder()
-					.withSpeech("Perdona, no reconozco ese animal. Di otro animal como 'Perro', 'Gato' o Pájaro'")
-					.addElicitSlotDirective(AlexaConstants.NAME_SLOT, intent).build();
+					.withSpeech(AlexaSpeechTexts.HELP_GENERIC[new Random().nextInt(AlexaSpeechTexts.HELP_GENERIC.length)])
+	        		.withReprompt(AlexaSpeechTexts.HELP_GENERIC_PROMPT[new Random().nextInt(AlexaSpeechTexts.HELP_GENERIC_PROMPT.length)])
+					.addElicitSlotDirective(AlexaConstants.SLOT_CARACRUZ_TYPE, intent).build();
 		} 
 		logger.info("MainHandler 4");
 		String speechText = "";
 		for (int i = 0; i<5; i++) {
-			speechText += (AlexaSpeechTexts.CARACRUZ[new Random().nextInt(AlexaSpeechTexts.CARACRUZ.length)]) + ", ";
+			speechText += "Has seleccionado " + nameSlot + (AlexaSpeechTexts.CARACRUZ[new Random().nextInt(AlexaSpeechTexts.CARACRUZ.length)]);
+			if (speechText.contains(realNameSlot))
+				speechText += "Tu Ganas";
+			else
+				speechText += "Tu Pierdes";
 		}
 		logger.info("MainHandler 5 - speechText: " + speechText);
 		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
