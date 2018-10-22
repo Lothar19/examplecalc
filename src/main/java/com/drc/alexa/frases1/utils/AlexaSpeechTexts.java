@@ -2,17 +2,44 @@ package com.drc.alexa.frases1.utils;
 
 public class AlexaSpeechTexts {
 
+	// TITLE
 	public static final String TITLE_FRASES1 = "Frases Torrente";
 	public static final String TITLE_NOMBRES = "Frases Nombres";
 	public static final String TITLE_MASCOTAS = "Frases Nombres de Mascotas";
+	public static final String TITLE_CARACRUZ = "Cara o Cruz";
+	public static final String TITLE_PARESNONES = "Paras o Nones";
 	
 	// WELCOME
-	public static final String[] WELCOME_FRASES1 = { "Te damos la bienvenida a Frases Torrente.",
-			"Te damos la bienvenida a nuestra skill de Frases Torrente. ",
-			"Hola, esto es Frases Torrente. ",
-			"Te damos la bienvenida a Frases Torrente. En esta primera versión sólo podrás escuchar frases de Torrente."};
+	// --------------------------------------------------------------------
+	public static final String[] WELCOME_FRASES1 = {
+		"Te damos la bienvenida a Frases Torrente.",
+		"Te damos la bienvenida a nuestra skill de Frases Torrente. ",
+		"Hola, esto es Frases Torrente. ",
+		"Te damos la bienvenida a Frases Torrente. En esta primera versión sólo podrás escuchar frases de Torrente."
+	};
 
+	public static final String[] WELCOME_NOMBRES = { 
+		"Te damos la bienvenida a Nombres.",
+		"Te damos la bienvenida a nuestra skill de Nombres. ",
+		"Hola, esto es Nombres. ",
+		"Te damos la bienvenida a Nombres. En esta primera versión sólo podrás escuchar frases de Torrente."
+	};
 	
+	public static final String[] WELCOME_CARACRUZ = {
+		"Te damos la bienvenida a "+TITLE_CARACRUZ+". "
+		, "Te damos la bienvenida a nuestra skill de "+TITLE_CARACRUZ+"."
+		, "Hola, esto es "+TITLE_CARACRUZ+". "
+	};
+	
+	public static final String[] WELCOME_PARESNONES = { 
+		"Te damos la bienvenida a "+TITLE_PARESNONES+". "
+		, "Te damos la bienvenida a nuestra skill de "+TITLE_PARESNONES+"."
+		, "Hola, esto es "+TITLE_PARESNONES+". "
+	};
+	// --------------------------------------------------------------------
+	
+	// RESPONSE
+	// --------------------------------------------------------------------
 	public static final String[] FRASES1 = {
 	//	Torrente, el brazo tonto de la Ley.
 		"¿Te gustan las pistolitas? ¡PUES CÓMPRATE UNA!",
@@ -46,37 +73,37 @@ public class AlexaSpeechTexts {
 		"Señora, le cambio a su hija por una guitarra y así los 2 tenemos algo que tocar."
 	};
 	
-	// WELCOME
-		public static final String[] WELCOME_NOMBRES = { "Te damos la bienvenida a Nombres.",
-				"Te damos la bienvenida a nuestra skill de Nombres. ",
-				"Hola, esto es Nombres. ",
-				"Te damos la bienvenida a Nombres. En esta primera versión sólo podrás escuchar frases de Torrente."};
-
-		
-		public static final String[] NOMBRES = {
+	public static final String[] NOMBRES = {
 		//	Hombre
-			"¿Te gustan las pistolitas? ¡PUES CÓMPRATE UNA!",			
+		"¿Te gustan las pistolitas? ¡PUES CÓMPRATE UNA!",			
 		
 		//	Mujer
-			"Todo el mundo quieto o me cargo al mono.",			
-		};
+		"Todo el mundo quieto o me cargo al mono.",			
+	};
+
+	public static final String[] CARACRUZ = {
+		  			
+	};
 		
-	// WELCOME
-		public static final String[] WELCOME_MASCOTAS = { "Te damos la bienvenida a Nombres de Mascotas. Si quieres oir nombres de perros, diga 'Dime nombres para perros'"
-				, "Te damos la bienvenida a nuestra skill de Nombres de Mascotas. Si quieres oir nombres de gatos, diga 'Dime nombres para gatos'"
-				, "Hola, esto es Nombres de Mascotas. Si quieres oir nombres de pájaros, diga 'Dime nombres para pajaros'"
-//				, "Te damos la bienvenida a Nombres de Mascotas. "
-				};
+	public static final String[] PARESNONES = {
+		  			
+	};
+	// --------------------------------------------------------------------
+
+	// HELP GENERIC
+	public static final String[] HELP_GENERIC = { 
+			"Nuestra skill te permite elegir 'cara o cruz'.",
+			"Una de las opciones disponibles es elegir 'cara'.",
+			"Una de las opciones disponibles es elegir 'cruz'.",
+			"Diga 'cara'.",
+			"Diga 'cruz'.",
+			"Pruebe a decir 'cara'.",
+			"Pruebe a decir 'cruz'."			
+	};
 	
-		
-		public static final String[] MASCOTAS = {
-		//	Masculino
-			"Simba", "Mufasa", "Woody", "Pumba", "Stich", "Mike", "Pluto", "Pongo", "Dumbo", "Winnie", "Taron", "Koda", "Mudito", "Banzai", "Zurg", "Yao", "Buzz", "Zeus", "Ron", 			
-		
-		//	Femenino
-			"Ariel", "Nala", "Jane", "Dory", "Sarabi", "Nita", "Darla", "Tiana", "Tanana", "Lizzy", "Amelia", "Foxi", "Wendy", "Mia", "Anastasia", "Helen", "Grace", "Elsa", "Chaca",  			
-		};
-	
+	/**********************************
+	 ********** GENERICO **************
+	 **********************************/
 	// STOP
 	public static final String[] STOP_DEFAULT_EMPTY = {
 			"Si te ha gustado nuestra skill danos cinco estrellas.", 
@@ -89,23 +116,27 @@ public class AlexaSpeechTexts {
 			"Perdona, ¿puedes repetirlo?", 
 			"Perdona, ¿Que has dicho?"
 	};
-
-	// HELP
-	// reproduce el directo, escuchar directo, directo
-	public static final String[] ALEXA_HELP = { "Nuestra skill te permite conocer nombres de mascotas, sólo tiene que decir 'Dime nombres para pájaros'",
-			"Una de las opciones disponibles es 'Dime nombres para perros'.", 
-			"Diga 'Dime nombres para gatos'."
-			};
-	public static final String[] ALEXA_PROMPT_HELP = { "No te he entendido", "Perdona, ¿puedes repetirlo?" };
-
-	// REPEAT
-	public static final String NOT_IMPLEMENTED_REPEAT = "La opción repite estará disponible en próximas versiones.";
-
+	
+	// HELP GENERIC PROMPT
+	public static final String[] HELP_GENERIC_PROMPT = {
+			"No te he entendido.", 
+			"No he entendido qué es lo que quieres escuchar.",
+			"Perdona, No te he entendido.", 
+			"Perdona, ¿puedes repetirlo?",
+			"Perdona, ¿Que has dicho?"
+	};
+	
+	//PAUSE
+	public static final String[] PAUSE_DEFAULT = {
+			"Para seguir puedes decir 'Alexa, continuar', o para terminar puedes decir 'Alexa, cancela'.",
+			"Para reanudar puede decir 'Alexa, continuar', y para terminar puede decir 'Alexa, cancela'"
+	};	
 
 	// NOT IMPLEMENTED
-	public static final String NOT_IMPLEMENTED_NEXT = "La opción de reproducir siguiente estará disponible en próximas versiones.";
-	public static final String NOT_IMPLEMENTED_PREVIOUS = "La opción de reproducir anterior estará disponible en próximas versiones.";
+	public static final String NOT_IMPLEMENTED_REPEAT    = "La opción repite estará disponible en próximas versiones.";
+	public static final String NOT_IMPLEMENTED_NEXT      = "La opción de reproducir siguiente estará disponible en próximas versiones.";
+	public static final String NOT_IMPLEMENTED_PREVIOUS  = "La opción de reproducir anterior estará disponible en próximas versiones.";
 	public static final String NOT_IMPLEMENTED_STARTOVER = "La opción de empezar de nuevo un directo estará disponible en próximas versiones.";
-	public static final String NOT_IMPLEMENTED_SHUFFLE = "La opción de reproducción aleatoria estará disponible en próximas versiones.";
-	public static final String NOT_IMPLEMENTED_LOOP = "La opción de reproducción en bucle estará disponible en próximas versiones.";
+	public static final String NOT_IMPLEMENTED_SHUFFLE   = "La opción de reproducción aleatoria estará disponible en próximas versiones.";
+	public static final String NOT_IMPLEMENTED_LOOP      = "La opción de reproducción en bucle estará disponible en próximas versiones.";
 }

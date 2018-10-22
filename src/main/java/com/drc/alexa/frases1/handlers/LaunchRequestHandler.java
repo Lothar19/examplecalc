@@ -29,7 +29,7 @@ public class LaunchRequestHandler implements RequestHandler {
 //		BodyTemplate1 template = BodyTemplate1.builder().withBackgroundImage(image).withBackButton(BackButtonBehavior.VISIBLE).build();
 //		
 //		// Mensaje de bienvenida
-		String speechText = (AlexaSpeechTexts.WELCOME_MASCOTAS[new Random().nextInt(AlexaSpeechTexts.WELCOME_MASCOTAS.length)]);
+		String speechText = (AlexaSpeechTexts.WELCOME_CARACRUZ[new Random().nextInt(AlexaSpeechTexts.WELCOME_CARACRUZ.length)]);
 		logger.info("Launch 2 - speech: " + speechText);
 //		// Comprueba si el dispositivo tiene pantalla para mostrar la imagen o no.
 //		if (null != input.getRequestEnvelope().getContext().getDisplay()) {

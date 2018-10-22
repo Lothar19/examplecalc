@@ -2,7 +2,11 @@ package com.drc.alexa.frases1.model;
 
 public enum CustomIntentEnum {
 	
-	NOMBRES_MASCOTAS("NombresDeMascotas"), NOMBRES("Nombres"), FRASES_TORRENTES("Frases");
+	NOMBRES_MASCOTAS("NombresDeMascotas"), 
+	NOMBRES("Nombres"), 
+	FRASES_TORRENTES("Frases"),
+	CARA_CRUZ("CaraCruz"),
+	PARES_NONES("ParesNones");
 	
 	String intentName;
 	

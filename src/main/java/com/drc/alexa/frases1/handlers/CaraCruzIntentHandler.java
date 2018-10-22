@@ -24,13 +24,13 @@ import com.drc.alexa.frases1.model.CustomIntentEnum;
 import com.drc.alexa.frases1.utils.AlexaConstants;
 import com.drc.alexa.frases1.utils.AlexaSpeechTexts;
 
-public class NombresMascotasIntentHandler implements RequestHandler {
+public class CaraCruzIntentHandler implements RequestHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(NombresMascotasIntentHandler.class);
+	private static final Logger logger = LoggerFactory.getLogger(CaraCruzIntentHandler.class);
 
 	public boolean canHandle(HandlerInput input) {
 		logger.info("********** NombresMascotasIntentHandler: " + new Date() + input);
-		return input.matches(intentName(CustomIntentEnum.NOMBRES_MASCOTAS.getIntentName()));
+		return input.matches(intentName(CustomIntentEnum.CARA_CRUZ .getIntentName()));
 	}
 
 	public Optional<Response> handle(HandlerInput input) {
@@ -56,7 +56,7 @@ public class NombresMascotasIntentHandler implements RequestHandler {
 		logger.info("MainHandler 4");
 		String speechText = "";
 		for (int i = 0; i<5; i++) {
-			speechText += (AlexaSpeechTexts.MASCOTAS[new Random().nextInt(AlexaSpeechTexts.MASCOTAS.length)]) + ", ";
+			speechText += (AlexaSpeechTexts.CARACRUZ[new Random().nextInt(AlexaSpeechTexts.CARACRUZ.length)]) + ", ";
 		}
 		logger.info("MainHandler 5 - speechText: " + speechText);
 		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();

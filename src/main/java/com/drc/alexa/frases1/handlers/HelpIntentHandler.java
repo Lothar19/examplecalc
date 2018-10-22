@@ -18,7 +18,7 @@ public class HelpIntentHandler implements RequestHandler {
     }
 
     public Optional<Response> handle(HandlerInput input) {
-    	String speechText = (AlexaSpeechTexts.ALEXA_HELP[new Random().nextInt(AlexaSpeechTexts.ALEXA_HELP.length)]);
+    	String speechText = (AlexaSpeechTexts.HELP_GENERIC[new Random().nextInt(AlexaSpeechTexts.HELP_GENERIC.length)]);
     	
         return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
     }
