@@ -60,12 +60,12 @@ public class CaraCruzIntentHandler implements RequestHandler {
 		if (realNameSlot.equalsIgnoreCase(Opt))
 			speechText += "<emphasis level=\"strong\"> Tu Ganas </emphasis>";
 		else
-			speechText += "<emphasis level=\"strong\">Tu Pierdes </emphasis>";
+			speechText += "<emphasis level=\"strong\"> Tu Pierdes </emphasis>";
 
 		logger.info("*******************************");
 		logger.info("MainHandler 5 - speechText: " + speechText);
 		logger.info("*******************************");
-		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(false).build();
+		return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
 	}
 
 	/**

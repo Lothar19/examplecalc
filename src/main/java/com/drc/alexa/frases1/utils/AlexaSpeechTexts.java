@@ -26,9 +26,9 @@ public class AlexaSpeechTexts {
 	};
 	
 	public static final String[] WELCOME_CARACRUZ = {
-		"Te damos la bienvenida a "+TITLE_CARACRUZ+". "
-		, "Te damos la bienvenida a nuestra skill de "+TITLE_CARACRUZ+"."
-		, "Hola, esto es "+TITLE_CARACRUZ+". "
+		"Te damos la bienvenida a "+TITLE_CARACRUZ+". ¿Pida Cara o Cruz?"
+		, "Te damos la bienvenida a nuestra skill de "+TITLE_CARACRUZ+". ¿Pida Cara o Cruz?"
+		, "Hola, esto es "+TITLE_CARACRUZ+". ¿Pida Cara o Cruz?"
 	};
 	
 	public static final String[] WELCOME_PARESNONES = { 
